@@ -13,7 +13,8 @@ from libs.utils import postHttp
 def hostalive(ip_addr, project_id):
     try:
         #http://www.lijiejie.com/nmap-fast-scan-large-networks/
-        cmd =  "sudo " + nmap_dir +"/nmap -v -sn -PE -n --min-hostgroup 1024 --min-parallelism 1024 -oX /tmp/nmap_output.xml "  + ip_addr
+        # ping 主机 1024线程  nmap -v -sn -PE -n --min-hostgroup 1024 --min-parallelism 1024 -oX nmap_output.xml www.xxx.com/16
+        cmd =  "sudo " + nmap_dir +"/nmap -v -sn -PE -n --min-hostgroup 100 --min-parallelism 100 -oX /tmp/nmap_output.xml "  + ip_addr
         logger.info(cmd)
         Popen(cmd.split(),shell=False, cwd=nmap_dir).wait()
 
